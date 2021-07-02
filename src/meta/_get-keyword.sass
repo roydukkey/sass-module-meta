@@ -1,0 +1,42 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+////
+/// @author roydukkey
+/// @group api
+////
+
+@use 'sass:map'
+@use 'sass:meta'
+@use 'sass-exception/src/exception/parameter-type' as exception
+
+
+///
+/// Gets the value of the named parameter from the given argument list, otherwise providing a default value.
+///
+/// @param {ArgList} $args - The argument list from which to get the named parameter.
+///	@param {String} $name - The name of the parameter to get.
+/// @param {*} $default [null] - The value of the parameter when not contained in the argument list.
+/// @return {*}
+///
+/// @throw `#{$args}` is not a arglist.
+/// @throw `#{$name}` is not a string.
+///
+/// @example sass
+///   @function concat($values...)
+///     $separator: sass-meta.get-keyword($values, 'separator', auto)
+///     ...
+///
+/// @access public
+/// @require exception.parameter-type
+///
+@function get-keyword($args, $name, $default: null)
+
+	@if meta.type-of($args) != 'arglist'
+		@error exception.parameter-type('get-keyword', 'args', $args, 'arglist')
+
+	@if meta.type-of($name) != 'string'
+		@error exception.parameter-type('get-keyword', 'name', $name, 'string')
+
+	$args: meta.keywords($args)
+
+	@return if(map.has-key($args, $name), map.get($args, $name), $default)
