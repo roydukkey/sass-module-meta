@@ -36,7 +36,6 @@
 		"lint": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
 		"pretest": "yarpm run lint",
 		"test": "jest",
-		"build": "node ./build.js",
 		"prepack": "yarpm run test -- --verbose=false && clean-package",
 		"new:pack": "yarpm pack && clean-package restore",
 		"new:publish": "yarpm publish && clean-package restore"
