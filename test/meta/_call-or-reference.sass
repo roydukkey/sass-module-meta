@@ -28,7 +28,7 @@
 		$expected: $reference
 		@include true.assert-equal($assert, $expected)
 
-	@include true.it('Throws when $function is not an function')
+	@include true.it('Throws when $function is not a function')
 		$assert: src.call-or-reference(null)
 		$expected: 'ERROR: $function: `null` is not a function for `call-or-reference()`.'
 		@include true.assert-equal($assert, $expected)
