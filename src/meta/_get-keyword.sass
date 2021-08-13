@@ -7,7 +7,7 @@
 
 @use 'sass:map'
 @use 'sass:meta'
-@use 'sass-exception/src/exception/parameter-type' as exception
+@use 'sass-exception/src/exception/parameter-type'
 
 
 ///
@@ -27,15 +27,15 @@
 ///     ...
 ///
 /// @access public
-/// @require exception.parameter-type
+/// @require parameter-type.parameter-type
 ///
 @function get-keyword($args, $name, $default: null)
 
 	@if meta.type-of($args) != 'arglist'
-		@error exception.parameter-type('get-keyword', 'args', $args, 'arglist')
+		@error parameter-type.parameter-type('get-keyword', 'args', $args, 'arglist')
 
 	@if meta.type-of($name) != 'string'
-		@error exception.parameter-type('get-keyword', 'name', $name, 'string')
+		@error parameter-type.parameter-type('get-keyword', 'name', $name, 'string')
 
 	$args: meta.keywords($args)
 

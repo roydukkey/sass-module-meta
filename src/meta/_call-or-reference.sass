@@ -7,7 +7,7 @@
 
 @use 'sass:list'
 @use 'sass:meta'
-@use 'sass-exception/src/exception/parameter-type' as exception
+@use 'sass-exception/src/exception/parameter-type'
 
 
 ///
@@ -26,12 +26,12 @@
 ///     @return sass-meta.call-or-reference(meta.get-function('_numeric'), $args...)
 ///
 /// @access public
-/// @require exception.parameter-type
+/// @require parameter-type.parameter-type
 ///
 @function call-or-reference($function, $args...)
 
 	@if meta.type-of($function) != 'function'
-		@error exception.parameter-type('call-or-reference', 'function', $function, 'function')
+		@error parameter-type.parameter-type('call-or-reference', 'function', $function, 'function')
 
 	@if list.length($args) != 0 or list.length(meta.keywords($args)) != 0
 		@return meta.call($function, $args...)
